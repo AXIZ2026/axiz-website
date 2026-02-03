@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<!-- saved from url=(0020)https://www.axiz.cl/ -->
+<html lang="es" data-qb-installed="true"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AXIZ – Consultora Legal Estratégica</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;
+    background:#ffffff;
+    overflow-x:hidden;
+}
+
+/* CONTENEDOR IMAGEN */
+.image-container{
+    position:relative;
+    max-width:1200px;
+    margin:0 auto;
+}
+
+#fullImage{
+    width:100%;
+    display:block;
+}
+
+/* ÁREAS CLICKEABLES INVISIBLES */
+.nav-area{
+    position:absolute;
+    top:9.5%;
+    height:0.7%;
+    cursor:pointer;
+    z-index:10;
+}
+
+/* POSICIÓN DE BOTONES */
+#nav-quienes   { left:8%;    width:13%; }
+#nav-servicios { left:31.8%; width:13%; }
+#nav-estructura{ left:47%;   width:18%; }
+#nav-equipo    { left:68%;   width:9%;  }
+#nav-contacto  { left:78%;   width:12%; }
+
+/* MOBILE */
+@media(max-width:768px){
+    .nav-area{
+        height:1.6%;
+    }
+}
+
+/* FLECHA VOLVER ARRIBA */
+#backToTop{
+    position:fixed;
+    bottom:3%;
+    right:3%;
+    width:48px;
+    height:48px;
+    background:rgba(0,0,0,0.6);
+    color:#ffffff;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    cursor:pointer;
+    z-index:50;
+}
+
+#backToTop:hover{
+    background:rgba(0,0,0,0.8);
+}
+
+@media(max-width:768px){
+    #backToTop{
+        width:44px;
+        height:44px;
+        font-size:20px;
+    }
+}
+</style>
+<script src="chrome-extension://idnnbdplmphpflfnlkomgpfbpcgelopg/inpage.js" id="xverse-wallet-provider" data-is-priority="true"></script></head>
+
+<body>
+
+<div class="image-container">
+    <!-- CAMBIA LA RUTA SI ES NECESARIO -->
+    <img id="fullImage" src="./AXIZ – Consultora Legal Estratégica_files/axiz.jpg" alt="AXIZ Consultora Legal Estratégica">
+
+    <div id="nav-quienes" class="nav-area" onclick="goTo(14)"></div>
+    <div id="nav-servicios" class="nav-area" onclick="goTo(25)"></div>
+    <div id="nav-estructura" class="nav-area" onclick="goTo(66)"></div>
+    <div id="nav-equipo" class="nav-area" onclick="goTo(82)"></div>
+    <div id="nav-contacto" class="nav-area" onclick="goTo(95)"></div>
+</div>
+
+<!-- FLECHA -->
+<div id="backToTop" onclick="goToTop()">↑</div>
+
+<script>
+const img = document.getElementById('fullImage');
+
+function goTo(percent){
+    window.scrollTo({
+        top: img.offsetHeight * (percent / 100),
+        behavior: 'smooth'
+    });
+}
+
+function goToTop(){
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+}
+</script>
+
+
+
+</body></html>
