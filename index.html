@@ -33,10 +33,13 @@
   }
   .snav a:hover { opacity:0.82; }
 
-  /* ── HAMBURGER (mobile only) ── */
+  /* ── HAMBURGER (mobile only, always fixed top-right) ── */
   #hamburger {
-    display:none; flex-direction:column; gap:5px; cursor:pointer;
-    padding:6px; background:var(--azul); border-radius:6px; border:none;
+    display:none;
+    position:fixed; top:12px; right:16px; z-index:400;
+    flex-direction:column; gap:5px; cursor:pointer;
+    padding:8px 10px; background:var(--azul); border-radius:6px; border:none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
   }
   #hamburger span { display:block; width:22px; height:2px; background:var(--blanco); border-radius:2px; }
 
@@ -126,6 +129,7 @@
   @media(max-width:600px) {
     .snav { display:none; }
     #hamburger { display:flex; }
+    #sticky-nav { display:none; }
 
     #inicio { padding:30px 20px 40px; min-height:100svh; }
     #inicio img.logo { width:clamp(200px,75vw,340px); margin-bottom:36px; }
@@ -159,10 +163,12 @@
     <a href="#equipo">Equipo</a>
     <a href="#contacto">Contacto</a>
   </nav>
-  <button id="hamburger" onclick="toggleMenu()" aria-label="Menú">
-    <span></span><span></span><span></span>
-  </button>
 </div>
+
+<!-- HAMBURGER BUTTON (always visible on mobile, top-right) -->
+<button id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+  <span></span><span></span><span></span>
+</button>
 
 <!-- MOBILE MENU -->
 <div id="mobile-menu">
@@ -247,4 +253,7 @@
 
   // Emails (avoid Cloudflare obfuscation)
   document.getElementById('em1').href = 'mail' + 'to:fernanda.hahn' + '@' + 'axiz.cl';
-  document.getElementById('em2').href = 'mail' + 'to:bar
+  document.getElementById('em2').href = 'mail' + 'to:barbara.lopez' + '@' + 'axiz.cl';
+</script>
+</body>
+</html>
