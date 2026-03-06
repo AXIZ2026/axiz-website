@@ -106,10 +106,112 @@
   #btt.on { opacity:1; pointer-events:auto; }
   #btt:hover { background:var(--dorado); }
 
-  .fi { opacity:0; transform:translateY(16px); transition:opacity .65s ease,transform .65s ease; }
-  .fi.on { opacity:1; transform:translateY(0); }
+  .fi { opacity:1; }
 
-  @media(max-width:600px) { .snav { display:none; } }
+  /* HAMBURGER BUTTON */
+  #hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    padding: 6px;
+    background: var(--azul);
+    border-radius: 6px;
+    border: none;
+  }
+  #hamburger span {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--blanco);
+    border-radius: 2px;
+    transition: all .3s;
+  }
+
+  /* MOBILE DROPDOWN MENU */
+  #mobile-menu {
+    display: none;
+    position: fixed;
+    top: 52px; right: 0;
+    background: var(--azul);
+    z-index: 300;
+    padding: 10px 0;
+    border-radius: 0 0 0 10px;
+    box-shadow: -2px 4px 12px rgba(0,0,0,0.18);
+    min-width: 220px;
+  }
+  #mobile-menu.open { display: block; }
+  #mobile-menu a {
+    display: block;
+    padding: 13px 24px;
+    font-family:'Raleway',sans-serif;
+    font-size: 12px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    text-decoration: none;
+    color: var(--blanco);
+    border-bottom: 1px solid rgba(255,255,255,0.12);
+    transition: background .2s;
+  }
+  #mobile-menu a:last-child { border-bottom: none; }
+  #mobile-menu a:hover { background: rgba(255,255,255,0.12); }
+
+  @media(max-width:600px) {
+    .snav { display:none; }
+    #hamburger { display:flex; }
+
+    /* Hero mobile */
+    #inicio {
+      padding: 30px 20px 40px;
+      min-height: 100svh;
+      justify-content: center;
+    }
+    #inicio img.logo {
+      width: clamp(200px, 75vw, 340px);
+      margin-bottom: 36px;
+    }
+
+    /* Nav buttons mobile: 2 per row, full width feel */
+    .hnav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+      max-width: 380px;
+    }
+    .hnav a {
+      text-align: center;
+      padding: 13px 10px;
+      font-size: 10px;
+      letter-spacing: 0.14em;
+      border-radius: 8px;
+    }
+    /* "Estructura de Trabajo" spans full width */
+    .hnav a:nth-child(3) {
+      grid-column: 1 / -1;
+    }
+
+    /* Sections mobile */
+    .pag {
+      padding: 40px 3vw;
+      min-height: 100svh;
+    }
+    .pag img {
+      max-width: 100%;
+    }
+
+    /* Contacto mobile */
+    #contacto {
+      min-height: 100svh;
+    }
+    .ct-emails {
+      flex-direction: column;
+      align-items: center;
+      gap: 18px;
+    }
+    .ct-emails a {
+      font-size: 15px;
+    }
+  }
 </style>
 </head>
 <body>
@@ -124,6 +226,18 @@
     <a href="#equipo">Equipo</a>
     <a href="#contacto">Contacto</a>
   </nav>
+  <button id="hamburger" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</div>
+
+<!-- MOBILE MENU -->
+<div id="mobile-menu">
+  <a href="#quienes" onclick="closeMenu()">Quiénes Somos</a>
+  <a href="#servicios" onclick="closeMenu()">Servicios</a>
+  <a href="#estructura" onclick="closeMenu()">Estructura de Trabajo</a>
+  <a href="#equipo" onclick="closeMenu()">Equipo</a>
+  <a href="#contacto" onclick="closeMenu()">Contacto</a>
 </div>
 
 <!-- HERO -->
@@ -164,25 +278,34 @@
   <div class="ct-wrap fi">
     <h2 class="stitle">Contacto</h2>
     <div class="ct-emails">
-      <a href="mailto:fernanda.hahn@axiz.cl">fernanda.hahn@axiz.cl</a>
-      <a href="mailto:barbara.lopez@axiz.cl">barbara.lopez@axiz.cl</a>
+      <a id="email1">fernanda.hahn&#64;axiz.cl</a>
+      <a id="email2">barbara.lopez&#64;axiz.cl</a>
     </div>
+    <script>
+      document.getElementById('email1').href='mail'+'to:'+'fernanda.hahn'+'@'+'axiz.cl';
+      document.getElementById('email2').href='mail'+'to:'+'barbara.lopez'+'@'+'axiz.cl';
+    </script>
   </div>
 </section>
 
 <footer>© 2025 <b>AXIZ</b> – Consultora Legal Estratégica &nbsp;·&nbsp; Todos los derechos reservados</footer>
 <a href="#inicio" id="btt">↑</a>
 
-<script>
-  const nav=document.getElementById('sticky-nav'), btt=document.getElementById('btt');
-  window.addEventListener('scroll',()=>{
-    const s=window.scrollY>window.innerHeight*.5;
-    nav.classList.toggle('visible',s);
-    btt.classList.toggle('on',s);
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js">
+  function toggleMenu() {
+    const menu = document.getElementById('mobile-menu');
+    menu.classList.toggle('open');
+  }
+  function closeMenu() {
+    document.getElementById('mobile-menu').classList.remove('open');
+  }
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobile-menu');
+    const btn = document.getElementById('hamburger');
+    if (!menu.contains(e.target) && !btn.contains(e.target)) {
+      menu.classList.remove('open');
+    }
   });
-  document.querySelectorAll('.fi').forEach(el=>
-    new IntersectionObserver(([e])=>{if(e.isIntersecting)e.target.classList.add('on');},{threshold:0.05}).observe(el)
-  );
-</script>
-</body>
-</html>
+</script><script>
+  const nav=document.getElementById('sticky-nav'), btt=document.get
