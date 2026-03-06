@@ -221,13 +221,13 @@
 <a href="#inicio" id="btt">↑</a>
 
 <script>
-  // Sticky nav + back to top
+  // Sticky nav aparece al pasar el hero
   var nav = document.getElementById('sticky-nav');
   var btt = document.getElementById('btt');
   window.addEventListener('scroll', function() {
-    var s = window.scrollY > window.innerHeight * 0.5;
-    if (s) { nav.classList.add('visible'); btt.classList.add('on'); }
-    else   { nav.classList.remove('visible'); btt.classList.remove('on'); }
+    var passed = window.scrollY > (document.getElementById('inicio').offsetHeight * 0.8);
+    if (passed) { nav.classList.add('visible'); btt.classList.add('on'); }
+    else        { nav.classList.remove('visible'); btt.classList.remove('on'); }
   });
 
   // Hamburger menu
@@ -247,7 +247,4 @@
 
   // Emails (avoid Cloudflare obfuscation)
   document.getElementById('em1').href = 'mail' + 'to:fernanda.hahn' + '@' + 'axiz.cl';
-  document.getElementById('em2').href = 'mail' + 'to:barbara.lopez' + '@' + 'axiz.cl';
-</script>
-</body>
-</html>
+  document.getElementById('em2').href = 'mail' + 'to:bar
