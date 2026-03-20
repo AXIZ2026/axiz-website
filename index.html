@@ -126,12 +126,17 @@
 
   /* ── MOBILE ── */
   @media(max-width:600px) {
-    /* Ocultar nav desktop, mostrar hamburguesa */
     .snav { display:none; }
     #sticky-nav { display:none; }
     #hamburger { display:flex; }
 
-    /* Hero */
+    /* Scroll snap: cada seccion ocupa exactamente una pantalla */
+    html { scroll-snap-type:y mandatory; }
+    #inicio, .pag, #contacto {
+      scroll-snap-align:start;
+      scroll-snap-stop:always;
+    }
+
     #inicio {
       min-height:100svh;
       padding:30px 20px 40px;
@@ -147,21 +152,20 @@
     }
     .hnav a:nth-child(3) { grid-column:1 / -1; }
 
-    /* Todas las secciones ocupan pantalla completa */
     .pag {
       min-height:100svh;
-      padding:50px 4vw;
+      padding:20px 4vw;
       justify-content:center;
+      overflow-y:auto;
     }
 
-    /* Servicios: las dos imágenes juntas sin espacio, en scroll natural */
     #servicios {
-      min-height:unset;
-      padding:40px 4vw;
+      min-height:100svh;
+      padding:20px 4vw;
       gap:0;
+      overflow-y:auto;
     }
 
-    /* Contacto */
     #contacto { min-height:100svh; }
     .ct-emails { flex-direction:column; align-items:center; gap:18px; }
     .ct-emails a { font-size:15px; }
